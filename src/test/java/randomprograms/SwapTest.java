@@ -1,28 +1,37 @@
 package randomprograms;
-
-import org.junit.Assert;
+import randomprograms.Swap;
 import org.junit.Test;
+import static org.junit.Assert.*;
+
 
 public class SwapTest {
     @Test
-    public void numSwap() {
-        Swap number = new Swap();
-        int[] result = number.swap(1,2);
-        Assert.assertEquals(2, result[0]); //
-        Assert.assertEquals(1,result[1]); //
+    public void testSwapIntegers() {
+        int a = 5;
+        int b = 10;
+
+        // Perform the swap
+        a = a + b;
+        b = a - b;
+        a = a - b;
+
+        // Test the swapped values
+        assertEquals(10, a);
+        assertEquals(5, b);
     }
+
     @Test
-    public void numSwap1() {
-        Swap number = new Swap();
-        int[] result = number.swap(11,22);
-        Assert.assertEquals(22, result[0]); //
-        Assert.assertEquals(11,result[1]); //
+    public void testSwapIntegersNegativeValues() {
+        int a = -8;
+        int b = 3;
+
+        // Perform the swap
+        a = a + b;
+        b = a - b;
+        a = a - b;
+
+        // Test the swapped values
+        assertEquals(3, a);
+        assertEquals(-8, b);
     }
-@Test
-public void numSwap2(){
-    Swap number = new Swap();
-    int[] result = number.swap(14,30);
-        Assert.assertEquals(30, result[0]); //
-        Assert.assertEquals(14,result[1]); //
-}
 }

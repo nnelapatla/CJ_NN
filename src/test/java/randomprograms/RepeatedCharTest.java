@@ -1,32 +1,38 @@
 package randomprograms;
+import static org.junit.Assert.*;
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 public class RepeatedCharTest {
-        @Test
-        public void testPrintRepeatedCharacters() {
-            // Test input string
-            String str = "hello world";
+    @Test
+    public void testPrintRepeatedCharacters() {
+        String str = "programming";
+        String expectedOutput = "Repeated Characters:\r\nr - 2\r\ng - 2\r\nm - 2";
+        assertEquals(expectedOutput, getPrintedOutput(str));
+    }
 
-            // Expected output
-            String expectedOutput = "Repeated characters in the string:\n" +
-                    "l - 3 times\n" +
-                    "o - 2 times\n";
+    @Test
+    public void testPrintRepeatedCharactersNoRepeats() {
+        String str = "abcdef";
+        String expectedOutput = "Repeated Characters:";
+        assertEquals(expectedOutput, getPrintedOutput(str));
+    }
 
-            // Redirect standard output to a string buffer for comparison
-            java.io.ByteArrayOutputStream outContent = new java.io.ByteArrayOutputStream();
-            System.setOut(new java.io.PrintStream(outContent));
+    private String getPrintedOutput(String str) {
+        // Redirect standard output to capture printed output
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outputStream));
 
-            // Call the method to be tested
-            RepeatedChar.printRepeatedCharacters(str);
+        // Invoke the method to be tested
+        RepeatedChar.printRepeatedCharacters(str);
 
-            // Restore standard output
-            System.setOut(System.out);
+        // Reset standard output
+        System.out.flush();
+        System.setOut(originalOut);
 
-            // Convert output content to string
-            String actualOutput = outContent.toString();
-
-            // Assert the output
-            assertEquals(expectedOutput, actualOutput);
-        }
+        return outputStream.toString().trim();
+    }
     }
 

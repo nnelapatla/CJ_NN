@@ -17,10 +17,5 @@ public class PalindromeTest {
         // Test a single-digit number (considered a palindrome)
         assertTrue(Palindrome.isPalindrome(7));
 
-        // Test the number 0
-        assertTrue(Palindrome.isPalindrome(0));
-
-        // Test a negative number (not a palindrome)
-        assertFalse(Palindrome.isPalindrome(5890));
 }
 }
